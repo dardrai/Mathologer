@@ -5,7 +5,7 @@ buildscript {
     dependencies {
         classpath "org.grails:grails-gradle-plugin:$grailsVersion"
         classpath "org.grails.plugins:hibernate5:7.0.0"
-        classpath "gradle.plugin.com.github.erdi.webdriver-binaries:webdriver-binaries-gradle-plugin:2.0"
+        classpath "gradle.plugin.com.github.erdi.webdriver-binaries:webdriver-binaries-gradle-plugin:2.2"
         classpath "com.bertramlabs.plugins:asset-pipeline-gradle:3.0.10"
     }
 }
@@ -85,7 +85,10 @@ bootRun {
 }
 
 webdriverBinaries {
-    chromedriver '2.45.0'
+    chromedriver {
+        version = '2.45.0'
+        architecture = 'X86'
+    }
     geckodriver '0.24.0'
 }
 

@@ -10,12 +10,23 @@ class MultiplicationCircleControllerSpec extends Specification implements Contro
 
     void "asking for #segments segments should provide #segments lines"(segments) {
         given:
-        def model = new MultiplicationCircleModel(segmentCount: segments) // TODO: Add the table base when it is available
+        def model = new MultiplicationCircleModel(segmentCount: segments)
         when:
         controller.index(model)
         then:
         model.lines.size() == segments
         where:
-        segments << [0, 1, 10, 100]
+        segments << [0, 1, 5, 6, 7, 8, 10, 47, 51, 100]
+    }
+
+    void "asking for #tableBase should provide #tableBase of the lines"(baseTable) {
+        given:
+        def model = new MultiplicationCircleModel(tableBase: baseTable)
+        when:
+        controller.index(model)
+        then:
+        model.getTableBase() == baseTable
+        where:
+        baseTable << [0, 1, 5, 6, 7, 8, 10, 47, 51, 100]
     }
 }
