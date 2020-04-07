@@ -9,12 +9,12 @@ class MultiplicationCircleController {
     def index(MultiplicationCircleModel circleModel) {
         circleModel.lines = []
         for(int i = 0; i < circleModel.segmentCount; i++){
-            circleModel.lines.add(
+            circleModel.lines.add( new Line(
                     x1: xValueOf(i, circleModel.segmentCount),
                     y1: yValueOf(i, circleModel.segmentCount),
                     x2: xValueOf(i * circleModel.tableBase, circleModel.segmentCount),
                     y2: yValueOf(i * circleModel.tableBase, circleModel.segmentCount)
-            )
+            ))
         }
         render view: "show", model: [circleInstance: circleModel]
     }
@@ -34,7 +34,11 @@ class MultiplicationCircleController {
 
 class MultiplicationCircleModel {
 
-    List lines = []
+    List<Line> lines = Collections.EMPTY_LIST
     int segmentCount = 10
     int tableBase    = 2
+}
+
+class Line {
+    double x1, y1, x2, y2
 }
